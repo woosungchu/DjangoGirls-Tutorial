@@ -1,11 +1,11 @@
-<h3>Hello World</h3>
-<h5>I am WoosungChu</h5>
-{{posts}}
-<br/>
-{% for post in posts %}
-<div>
-	<p>title : {{post.title}}</p>
-	<p>author : woosungchu</p>
-	<p>text : {{post.text |linebreaks}}</p>
-</div><br/>
-{% endfor %}
+{% extends 'blog/base.html' %}	
+{% block content %}
+	{% for post in posts %}
+	<div>
+		<p><a href="{% url 'post_detail' pk=post.pk %}">title : {{post.title}}</a></p>
+		<p>author : woosungchu</p>
+		<p>text : {{post.text |linebreaks}}</p>
+	</div><br/>
+	{% endfor %}
+{% endblock content%}
+
