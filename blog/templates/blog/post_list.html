@@ -1,11 +1,13 @@
 {% extends 'blog/base.html' %}	
 {% block content %}
 	{% for post in posts %}
-	<div>
-		<p><a href="{% url 'post_detail' pk=post.pk %}">title : {{post.title}}</a></p>
-		<p>author : woosungchu</p>
-		<p>text : {{post.text |linebreaks}}</p>
+	{% ifequal post.author.username "ohda" %}
+	<div class="post">
+		<h1 class="text-left"><a href="{% url 'post_detail' pk=post.pk %}">{{post.title}}</a></h1>
+		<p class="text-right">{{post.created_date}}</p>
+		<p>{{post.text |linebreaks}}</p>
 	</div><br/>
+	{% endifequal %}
 	{% endfor %}
 {% endblock content%}
 
