@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_REDIRECT_URL = '/'
 
 # Application definition
 
@@ -38,6 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+#util
+    'ckeditor',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -102,3 +105,22 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+#util
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+          [ 'Bold', 'Italic', 'Underline', 'Strike' ],
+          [ 'NumberedList', 'BulletedList', '-',  'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+          [ 'Table', 'HorizontalRule', 'Smiley'],
+          [  'Format', 'Font', 'FontSize' ],
+          [ 'TextColor', 'BGColor' ],
+        ],
+        'width' : '100%',
+        'language' : 'ko',
+    }
+}
+
+
