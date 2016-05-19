@@ -13,12 +13,16 @@
         {% else %}
         <a href="{% url 'django.contrib.auth.views.login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
         {% endif %}
-        <h1><a href="{% url 'blog.views.post_list' %}">OHDA NOTE</a>
+        <h1>
+		<a href="{% url 'blog.views.post_list' %}">
+			<span>OHDA NOTE</span>
+			<img src="http://cdn2.jjal.download/files/1_6bbf0429e9a2059bd3670446c3f2822fd9fadbb2.gif">
+		</a>
 	</h1>
     </div>
-    <div class="content container">
+    <div class="content container-fluid">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8 col-xs-12">
             {% block content %}
             {% endblock %}
             </div>
