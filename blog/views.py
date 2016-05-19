@@ -6,7 +6,12 @@ from .models import Post
 
 @login_required
 def post_list(request):
-	posts = Post.objects.all().order_by('-created_date')# start from 1 -> n
+#	posts = Post.objects.all().order_by('-created_date')
+	login_user = request.user
+	print(login_user)
+	posts = Post.objects.filter(author=login_user).order_by('-created_date')
+	print(posts) 
+# start from 1 -> n
 #.filter(published_date__lte=timezone.now()).order_by('published_date')
 	return render(request, 'blog/post_list.html',{'posts':posts})
 

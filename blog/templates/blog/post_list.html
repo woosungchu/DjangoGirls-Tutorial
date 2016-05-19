@@ -1,13 +1,11 @@
 {% extends 'blog/base.html' %}	
 {% block content %}
 	{% for post in posts %}
-	{% ifequal post.author.username "ohda" %}
 	<div class="post">
 		<h1 class="text-left"><a href="{% url 'post_detail' pk=post.pk %}">{{post.title}}</a></h1>
 		<p class="text-right">{{post.created_date}}</p>
 		<p>{{post.text |safe}}</p>
 	</div><br/>
-	{% endifequal %}
 	{% endfor %}
 {% endblock content%}
 
