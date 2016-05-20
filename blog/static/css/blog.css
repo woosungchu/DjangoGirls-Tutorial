@@ -15,6 +15,7 @@ body {
     text-align :center;
     cursor : pointer;
     background-color : #e6ccff;
+    padding-bottom : 3%;
 }
 
 .btn-custom-a {
@@ -23,9 +24,7 @@ body {
     color : black;
 }
 
-.content {
-    margin-left: 20px;
-}
+
 
 h1, h2, h3, h4 {
     font-family: 'Lobster', cursive;
