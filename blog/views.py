@@ -1,13 +1,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .forms import PostForm
 from .models import Post
+import json
 
 @login_required
 def post_list(request):
 	login_user = request.user
-	posts = Post.objects.filter(author=login_user).order_by('-created_date')
+	posts = Post.objects.filter(author=login_user, visible=True).order_by('-created_date')
 	return render(request, 'blog/post_list.html',{'posts':posts})
 
 @login_required
@@ -43,3 +45,31 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
+
+@login_required
+def post_hide(request, pk):
+	post = get_object_or_404(Post, pk=pk)
+	client = request.user
+	response_data = {'RESPONSE':'200'}
+	
+	if request.method == 'PUT' and request.is_ajax() and client==post.author :
+		print(json)
+		post.visible = False
+		post.save()
+
+		#response_data['HTTPRESPONSE'] = 200
+	else :
+		print('else')
+		#response_data['HTTPRESPONSE'] = 500
+		
+		# All CODES above Works successfully 
+		# but the code below.... 500 
+	return HttpResponse(json.dumps(response_data),content_type="application/json")
+
+   
+   
+   
+   
+   
+   
+   
