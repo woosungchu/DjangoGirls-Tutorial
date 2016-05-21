@@ -137,7 +137,7 @@ LOGGING = {
     'handlers': {
         'null': {
             'level':'DEBUG',
-            'class':'django.utils.log.NullHandler',
+            'class': 'logging.NullHandler',#'django.utils.log.NullHandler', removed in 1.9
         },
         'logfile': {
             'level':'DEBUG',
