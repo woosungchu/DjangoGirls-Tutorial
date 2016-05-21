@@ -50,20 +50,15 @@ def post_edit(request, pk):
 def post_hide(request, pk):
 	post = get_object_or_404(Post, pk=pk)
 	client = request.user
-	response_data = {'RESPONSE':'200'}
+	response_data = {}
 	
 	if request.method == 'PUT' and request.is_ajax() and client==post.author :
-		print(json)
 		post.visible = False
 		post.save()
-
-		#response_data['HTTPRESPONSE'] = 200
-	else :
-		print('else')
-		#response_data['HTTPRESPONSE'] = 500
 		
-		# All CODES above Works successfully 
-		# but the code below.... 500 
+		response_data['STATUS'] = 200
+	else :
+		response_data['STATUS'] = 410
 	return HttpResponse(json.dumps(response_data),content_type="application/json")
 
    

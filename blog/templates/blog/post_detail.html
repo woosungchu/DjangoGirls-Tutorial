@@ -1,18 +1,42 @@
 {% extends 'blog/base.html' %}
 
+{% block blockhead %}
+<script>
+$(document).ready(function(){
+	$('.removal').click(function(){
+		var $post = $(this);
+		var pk = $(this).data('no');
+		
+		$.ajax({
+			url : '/post/'+pk+'/hide/',
+			type : 'put',
+			success : function(response){
+				if(response.STATUS == '200'){
+					location.href='/'
+				}
+			}
+		})//end ajax
+	})
+});
+</script>
+{% endblock blockhead %}
+
 {% block content %}
     <div class="post">
         <h1>
-	<span>{{ post.title }}</span>
-	<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">
-		<span class="glyphicon glyphicon-pencil"></span>
-	</a>
-	</h1>
-        {% if post.created_date %}
-	<p class="text-right">
-                {{ post.created_date }}
+			<span>{{ post.title }}</span>
+		</h1>
+        <p class="text-right">
+            <a href="{% url 'post_edit' pk=post.pk %}" class="btn btn-default">
+				<span class="glyphicon glyphicon-pencil"></span>
+			</a>
+			<a href="#" class="btn btn-default removal" data-no="{{ post.pk }}" >
+				<span class="glyphicon glyphicon-remove"></span>
+			</a>
+		</p>
+		<p class="text-right">
+            <span>{{ post.created_date }}</span>
         </p>
-        {% endif %}
         <div class="post-textarea">{{ post.text|safe }}</div>
     </div>
 {% endblock %}
